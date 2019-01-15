@@ -1,0 +1,42 @@
+body {
+  padding: 10px 200px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.header{
+	width: 100%;
+	height: 150px;
+	background-image: linear-gradient(to right, #1d5795 , #22965e);
+	text-align: center;
+	color: white;
+	font-size: 4em;
+}
+.header_text{
+	line-height: 150px;
+}
+.search{
+	width: 100%;
+	padding: 0px;
+	margin: 20px;
+	position: relative;
+}
+.textbox{
+	width: 90%;
+	font-size: 2em;
+	padding: 10px;
+	margin: 0px;
+}
+.search_button{
+	border: none;
+	height: 56px;
+	width: 56px;
+	position: absolute;
+	margin: 0px;
+	background-image: url('../images/search.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-color: #22965e;
+	border-radius: 3px;
+	margin-left: 20px;
+}
+
