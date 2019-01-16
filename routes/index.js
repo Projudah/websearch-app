@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Toronto Waste Lookup' });
 });
 
+router.post('/', function(req, res, next) {
+  res.render('index', { title: 'Toronto Waste Lookup' });
+});
+
 module.exports = router;
