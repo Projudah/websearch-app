@@ -3,11 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Toronto Waste Lookup' });
+	res.render('index', { title: 'Toronto Waste Lookup' });
 });
 
 router.post('/', function(req, res, next) {
-  res.render('index', { title: 'Toronto Waste Lookup' });
+	console.log("CHOICKEENEENENENEEN")
+	res.render('index', { title: 'Toronto Waste Lookup' });
 });
 
 module.exports = router;

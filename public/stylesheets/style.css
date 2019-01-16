@@ -1,6 +1,6 @@
 body {
   padding: 10px 200px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 .header{
 	width: 100%;
@@ -31,7 +31,7 @@ body {
 	border-radius: 5px;
 	font-size: 2em;
 	padding: 10px;
-	width: 95%;
+	width: 100%;
 	margin-left: 15px;
 }
 .search_button_contain{
@@ -40,6 +40,7 @@ body {
 	height: 56px;
 	display: inline-block;
 	margin-right: 15px;
+	margin-left: 15px;
 }
 .search_button{
 	border: none;
@@ -49,4 +50,41 @@ body {
 	background-color: #22965e;
 	border-radius: 3px;
 }
-
+.results{
+	margin-bottom: 50px;
+	padding: 15px;
+}
+.result_entry{
+	display: grid;
+	grid-gap: 5px;
+	margin: 5px;
+	grid-template-columns: 50% 50%;
+}
+.star{
+	font-size: 1.1rem;
+	margin-right: 10px;
+}
+.star:hover{
+	cursor: pointer;
+}
+i{
+	color: #aaaaaa;
+}
+i .green{
+	color: #22965e;
+}
+.results, .favourites{
+	font-size: 2em;
+}
+ul{
+	margin: 0px;
+	padding: 0px;
+}
+.favourites{
+	background-color: #f7fefa;
+	padding: 15px;
+}
+.fav_title{
+	color: #22965e;
+	font-size: 1.5em;
+}
