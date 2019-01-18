@@ -4,8 +4,6 @@
 	<title><%= title %></title>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-
-
 </head>
 <body>
 	<div class="header">
@@ -14,7 +12,7 @@
 	<form action="#" method="post">
 		<div class='search'>
 			<span class='textbox_contain'>
-				<input type="text" name="search" class='textbox'>
+				<input type="text" name="search" class='textbox' <% if(locals.body){%>value=<%=body.search%><%}%> >
 			</span>
 			<span class='search_button_contain'>
 				<input type="image" alt="Submit" src='../images/search.png' class='search_button' name="image" value="">
@@ -22,37 +20,57 @@
 		</div>
 	</form>
 	<div class='results'>
-		<div class='result_entry'>
-			<div class='left'>
-				<span class ='star'><i class="fas fa-star"></i></span>
-				<span class='entry_name'>Blue Bin</span>
-			</div>
-			<div class='right'>
-				<ul>
-					<li class='entry_description'>
-						This should have a <b>bold at the end</b>
-					</li>
-				</ul>
-			</div>
-		</div>
+			<%
+				if(locals.hits){
+					for(var i in hits){ %>
+						<div class='result_entry'>
+							<div class='left'>
+								<span onclick='add_fav("<%-i%>")' class="star"><i <% if(favs[i]){%>class="fas fa-star green"<%} else {%> class="fas fa-star"<%}%>></i></span>
+								<span class='entry_name'><%=hits[i].title%></span>
+							</div>
+							<div class='right'>
+										<%-decode(hits[i].body)%>
+							</div>
+						</div>
+						<%
+					}
+				}
+			%>
 	</div>
 	<div class='favourites'>
 		<div class= 'fav_title'><b>Favourites</b></div>
 		<div class='fav_results'>
-			<div class='result_entry'>
-			<div class='left'>
-				<span class ='star'><i class="fas fa-star"></i></span>
-				<span class='entry_name'>Blue Bin</span>
-			</div>
-			<div class='right'>
-				<ul>
-					<li class='entry_description'>
-						This should have a <b>bold at the end</b>
-					</li>
-				</ul>
-			</div>
-		</div>
+			<%
+				if(favs != 'empty'){
+					for(var i in favs){ %>
+					<div class='result_entry'>
+						<div class='left'>
+							<span onclick='add_fav("<%-i%>")' class ='star'><i class="green fas fa-star"></i></span>
+							<span class='entry_name'><%=favs[i].title%></span>
+						</div>
+						<div class='right'>
+							<%-decode(favs[i].body)%>
+						</div>
+					</div>
+					<%
+				}
+			}
+					%>
 		</div>
 	</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function add_fav(id){
+		<%
+		if(locals.hits){ %>
+			var hits = '<%-JSON.stringify(hits)%>'
+		<% }else{ %>
+			var hits = "{}"
+		<%}%>
+		$.post("/favourite", {new: hits, id: id}, function(result){
+			location.reload();
+		});
+	}
+</script>
 </html>

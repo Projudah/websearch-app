@@ -58,6 +58,7 @@ body {
 	display: grid;
 	grid-gap: 5px;
 	margin: 5px;
+	margin-bottom: 20px;
 	grid-template-columns: 50% 50%;
 }
 .star{
@@ -70,15 +71,19 @@ body {
 i{
 	color: #aaaaaa;
 }
-i .green{
+span .green{
 	color: #22965e;
 }
+
 .results, .favourites{
 	font-size: 2em;
 }
 ul{
 	margin: 0px;
 	padding: 0px;
+}
+li{
+	margin-bottom: 10px;
 }
 .favourites{
 	background-color: #f7fefa;
