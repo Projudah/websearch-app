@@ -75,6 +75,7 @@ router.post('/favourite', function(req, res, next) {
 function search(searchterm, data,callback){
 	if(searchterm == '')
 		callback({});
+	searchterm = searchterm.toLowerCase();
 	var terms = searchterm.split(" ");
 	var hits = {};
 
