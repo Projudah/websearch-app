@@ -49,6 +49,13 @@ body {
 	margin: 0px;
 	background-color: #22965e;
 	border-radius: 3px;
+	background-image: url('../images/search.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.search_button:hover{
+	cursor: pointer;
 }
 .results{
 	margin-bottom: 50px;
@@ -87,9 +94,30 @@ li{
 }
 .favourites{
 	background-color: #f7fefa;
-	padding: 15px;
+	padding: 20px;
 }
 .fav_title{
 	color: #22965e;
 	font-size: 1.5em;
+}
+.empty_icon{
+	width: 100%;
+	height: 500px;
+	opacity: 0.5;
+	background-image: url('../images/fav.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	text-align: center;
+	color: #22965e;
+	font-size: 2em;
+	line-height: 500px;
+}
+.empty_search_container{
+	width: 100%;
+	text-align: center;
+	opacity: 0.3;
+	font-size: 2em;
+	height: 300px;
+	line-height: 300px;
 }

@@ -9,7 +9,21 @@ const favs_path = 'public/favourites/favs.txt'
 router.get('/', function(req, res, next) {
 	req.app.locals.decode = decode;
 	get_favs(function(favs){
-		res.render('index', { title: 'Toronto Waste Lookup', favs: favs});
+
+		if(req.query.search){
+			request.get("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000", function (error, response, body) {
+				if (!error && response.statusCode == 200) {
+					var data = JSON.parse(body);
+					search(req.query.search, data, function(hits){
+						get_favs(function(favs){
+							res.render('index', {hits: hits, body: req.query, favs: favs});
+						});
+					});
+				}
+			});
+		}else{
+			res.render('index', {favs: favs});
+		}
 	});
 });
 
@@ -21,7 +35,7 @@ router.post('/', function(req, res, next) {
 			var data = JSON.parse(body);
 			search(req.body.search, data, function(hits){
 				get_favs(function(favs){
-					res.render('index', { title: 'Toronto Waste Lookup', hits: hits, body: req.body, favs: favs});
+					res.render('index', {hits: hits, body: req.body, favs: favs});
 				});
 			});
 		}
@@ -29,21 +43,18 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/favourite', function(req, res, next) {
-	console.log("NEW:", req.body.new);
-	console.log("SPLIT:", req.body.new.split('\n'))
 
 	var data = JSON.parse(req.body.new.split('\n').join('\\n'));
 	var data_id = req.body.id;
 	fs.readFile(favs_path, function(err,saved){
 		if(!err){
 			var list ={}
-			if(saved != 'empty'){
-				list = JSON.parse(saved);
+			saved = JSON.parse(saved);
+			if(saved != {}){
+				list = saved;
 			}
 			if(data_id in list){
 				delete list[data_id];
-				if(list == {})
-					list = 'empty';
 			}else{
 				list[data_id] = data[data_id];
 			}
@@ -62,6 +73,8 @@ router.post('/favourite', function(req, res, next) {
 });
 
 function search(searchterm, data,callback){
+	if(searchterm == '')
+		callback({});
 	var terms = searchterm.split(" ");
 	var hits = {};
 
@@ -82,19 +95,20 @@ function search(searchterm, data,callback){
 }
 
 function get_favs(callback){
-	var list ="empty";
+	var list ={};
 	try {
 		if (fs.existsSync(favs_path)) {
 			fs.readFile(favs_path, function(err,data){
 				if(!err){
-					if(data!='empty')
-						list = JSON.parse(data);
+					data = JSON.parse(data);
+					if(data!={})
+						list = data;
 				}
 				callback(list);
 			});
 		}else{
 			console.log('filedoes not exist')
-			fs.appendFile(favs_path, list, function(err){
+			fs.appendFile(favs_path, JSON.stringify(list), function(err){
 				if(err)
 					throw err
 				callback(list);

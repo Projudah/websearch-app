@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= title %></title>
+	<title>Toronto Waste Lookup</title>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
@@ -9,13 +9,13 @@
 	<div class="header">
 		<div class="header_text"><b>Toronto Waste Lookup</b></div>
 	</div>
-	<form action="#" method="post">
+	<form action="" method="get">
 		<div class='search'>
 			<span class='textbox_contain'>
-				<input type="text" name="search" class='textbox' <% if(locals.body){%>value=<%=body.search%><%}%> >
+				<input placeholder="example 'Takeout'" type="text" name="search" class='textbox' <% if(locals.body){%>value=<%=body.search%><%}%> >
 			</span>
 			<span class='search_button_contain'>
-				<input type="image" alt="Submit" src='../images/search.png' class='search_button' name="image" value="">
+				<input type="submit" alt="Submit" class='search_button' value="">
 			</span>
 		</div>
 	</form>
@@ -34,14 +34,18 @@
 						</div>
 						<%
 					}
-				}
-			%>
+				}else{%>
+				<div class="empty_search_container">
+					<div class = "empty_search"><b>Type in the Search Bar to Begin</b></div>
+				</div>
+				<%}
+				%>
 	</div>
 	<div class='favourites'>
 		<div class= 'fav_title'><b>Favourites</b></div>
 		<div class='fav_results'>
 			<%
-				if(favs != 'empty'){
+				if(Object.keys(favs).length !== 0){
 					for(var i in favs){ %>
 					<div class='result_entry'>
 						<div class='left'>
@@ -54,7 +58,12 @@
 					</div>
 					<%
 				}
-			}
+			}else{%>
+			<div class="empty_icon_container">
+				<div class = "empty_icon"><b>Click on a star to Favourite</b></div>
+
+			</div>
+			<%}
 					%>
 		</div>
 	</div>
