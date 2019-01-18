@@ -162,4 +162,14 @@
 		height: 70px;
 		width: 70px;
 	}
+	.favourites, .results{
+		font-size: 1.7em;
+	}
+	.left{
+		margin-right: 35px;
+	}
+	.star{
+		font-size: 1rem;
+		margin-right: 20px;
+	}
 }
