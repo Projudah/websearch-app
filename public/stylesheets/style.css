@@ -137,7 +137,7 @@
 @media (max-width: 1000px){
 	body {
 	  padding: 0px 0px;
-	  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	  font: 7px "Lucida Grande", Helvetica, Arial, sans-serif;
 	}
 	li{
 		margin-bottom: 20px;
@@ -145,31 +145,36 @@
 	.textbox{
 		border: solid 1px;
 		border-radius: 5px;
-		font-size: 3em;
+		font-size: 2em;
 		padding: 10px;
 		width: 100%;
 		margin-left: 15px;
 	}
 	.search_button_contain{
 		float: right;
-		width: 70px;
-		height: 70px;
+		width: 40px;
+		height: 40px;
 		display: inline-block;
 		margin-right: 15px;
 		margin-left: 15px;
 	}
 	.search_button{
-		height: 70px;
-		width: 70px;
+		height: 40px;
+		width: 40px;
 	}
 	.favourites, .results{
-		font-size: 1.7em;
+		font-size: 2em;
 	}
 	.left{
 		margin-right: 35px;
 	}
 	.star{
 		font-size: 1rem;
-		margin-right: 20px;
+		margin-right: 5px;
+	}
+	.empty_search_container, .empty_icon{
+		font-size: 1em;
+		height: 200px;
+		line-height: 200px;
 	}
 }
